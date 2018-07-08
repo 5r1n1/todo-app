@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>Things to do</h1>
+        <label>Search:
+            <input id="search-text" type="text" placeholder="Enter search text...">
+        </label>
+        <button id="clear-search">Clear Search</button>
+        <br><br>
+        <label>
+            <input type="checkbox" id='hide-completed'>
+            Hide Completed
+        </label>
+        <br><div id="filtered-todos"></div><br>
+        <form id="add-todo-form">
+            <input type="text" id="todo-text" name="todoText" placeholder="Enter things to do...">
+            <button>Add Todo</button>
+        </form><br>
+        <script src="todo-functions.js"></script>
+        <script src="todo-app.js"></script>
+    </body>
+</html>
