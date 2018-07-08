@@ -27,7 +27,7 @@ const renderSummary = filteredTodos => {
 }
 
 const buildTodoListUI = (item) => {
-    const l = document.createElement('label')
+    const s = document.createElement('span')
 
     const del = document.createElement('input')
     del.type = 'image'
@@ -38,7 +38,7 @@ const buildTodoListUI = (item) => {
         this.saveToLS(todos)
         renderTodos(todos, filters)
     })
-    l.appendChild(del)
+    s.appendChild(del)
 
     const chk = document.createElement('input')
     chk.type = 'checkbox'
@@ -52,9 +52,9 @@ const buildTodoListUI = (item) => {
     const txt = document.createElement('label')
     txt.appendChild(chk)
     txt.insertAdjacentText('beforeend', ' ' + item.text)
-    l.appendChild(txt)
+    s.appendChild(txt)
 
-    l.appendChild(document.createElement('br'))
+    s.appendChild(document.createElement('br'))
     
-    return l
+    return s
 }
