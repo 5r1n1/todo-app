@@ -1,5 +1,14 @@
 /* global todos, filters */
 
+this.guid = () => {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1)
+    return s4() + s4() + '-' 
+         + s4() + '-' + s4() + '-' + s4() + '-' 
+         + s4() + s4() + s4()
+}
+
 this.saveToLS = (todos) => localStorage.setItem('todos', JSON.stringify(todos))
 
 this.loadFromLS = () => {
@@ -21,7 +30,7 @@ const renderTodos = (todos, filters) => {
 
 const renderSummary = filteredTodos => {
     const pending = filteredTodos.reduce((t, i) => i.completed? t : ++t, 0)
-    const summary = document.createElement('h3')
+    const summary = document.createElement('h4')
     summary.textContent = `You have ${pending} items to do`
     return summary
 }
@@ -31,11 +40,10 @@ const buildTodoListUI = (item) => {
 
     const del = document.createElement('input')
     del.type = 'image'
-    del.setAttribute('src', 'trash-can-icon-transparent-25.jpg')
+    del.setAttribute('src', 'del_icon.jpg')
     del.setAttribute('style', 'height:16px;width:16px;margin-right:5px')
     del.addEventListener ('click', () => {
-        todos.splice(todos.findIndex(i => i.text === item.text), 1)
-        this.saveToLS(todos)
+        deleteTodo(todos, item.id),
         renderTodos(todos, filters)
     })
     s.appendChild(del)
@@ -49,7 +57,8 @@ const buildTodoListUI = (item) => {
         renderTodos(todos, filters)
     })
 
-    const txt = document.createElement('label')
+    const txt = document.createElement('a')
+    txt.setAttribute('href', `/edit-note.html#${item.id}`)
     txt.appendChild(chk)
     txt.insertAdjacentText('beforeend', ' ' + item.text)
     s.appendChild(txt)
@@ -57,4 +66,9 @@ const buildTodoListUI = (item) => {
     s.appendChild(document.createElement('br'))
     
     return s
+}
+
+const deleteTodo = (todos, id) => {
+    todos.splice(todos.findIndex(i => i.id === id), 1)
+    this.saveToLS(todos)
 }

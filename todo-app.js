@@ -1,4 +1,4 @@
-/* global loadFromLS, renderTodos */
+/* global loadFromLS, renderTodos, guid */
 
 let todos = loadFromLS()
 const filters = {searchText : '', hideCompleted: false}
@@ -22,7 +22,14 @@ document.querySelector('#hide-completed').addEventListener('click', e => {
 
 document.querySelector('#add-todo-form').addEventListener('submit', e => {
     e.preventDefault()
-    todos.push({text: e.target.elements.todoText.value, completed: false})
+    if (e.target.elements.todoText.value.trim().length > 0) {
+        todos.push({
+            id: guid(),
+            text: e.target.elements.todoText.value,
+            completed: false
+        })
+        this.saveToLS(todos)
+        renderTodos(todos, filters)
+    }
     e.target.elements.todoText.value = ''
-    renderTodos(todos, filters)
 })
