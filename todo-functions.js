@@ -13,19 +13,19 @@ this.saveToLS = (todos) => localStorage.setItem('todos', JSON.stringify(todos))
 
 this.loadFromLS = () => {
     let todos = JSON.parse(localStorage.getItem('todos'))
-    return (todos === null) ? [] : todos
+    return todos ? todos : []
 }
 
 const renderTodos = (todos, filters) => {
     const filteredTodos = todos
-        .filter (i => i.text.toLowerCase().includes(filters.searchText.toLowerCase()))
-        // .filter (i => filters.hideCompleted ? !i.completed : true)
-        .filter (i => !filters.hideCompleted || !i.completed)
+        .filter(i => i.text.toLowerCase().includes(filters.searchText.toLowerCase()))
+        // .filter(i => filters.hideCompleted ? !i.completed : true)
+        .filter(i => !filters.hideCompleted || !i.completed)
 
     const filTodosDiv = document.querySelector('#filtered-todos')
     filTodosDiv.innerHTML = ''
     filTodosDiv.appendChild(renderSummary(filteredTodos))
-    filteredTodos.forEach (item => filTodosDiv.appendChild(buildTodoListUI (item)))
+    filteredTodos.forEach(item => filTodosDiv.appendChild (buildTodoListUI(item)))
 }
 
 const renderSummary = filteredTodos => {
@@ -42,7 +42,7 @@ const buildTodoListUI = (item) => {
     del.type = 'image'
     del.setAttribute('src', 'del_icon.jpg')
     del.setAttribute('style', 'height:16px;width:16px;margin-right:5px')
-    del.addEventListener ('click', () => {
+    del.addEventListener('click', () => {
         deleteTodo(todos, item.id),
         renderTodos(todos, filters)
     })
@@ -51,7 +51,7 @@ const buildTodoListUI = (item) => {
     const chk = document.createElement('input')
     chk.type = 'checkbox'
     chk.checked = item.completed
-    chk.addEventListener ('click', () => {
+    chk.addEventListener('click', () => {
         item.completed = !item.completed
         this.saveToLS(todos)
         renderTodos(todos, filters)
@@ -69,6 +69,9 @@ const buildTodoListUI = (item) => {
 }
 
 const deleteTodo = (todos, id) => {
-    todos.splice(todos.findIndex(i => i.id === id), 1)
-    this.saveToLS(todos)
+    const index = todos.findIndex (i => i.id === id)
+    if (!(index + 1)) {
+        todos.splice(index, 1)
+        this.saveToLS(todos)
+    }
 }
