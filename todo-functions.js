@@ -73,7 +73,7 @@ const buildTodoListUI = (item) => {
 
 const deleteTodo = (todos, id) => {
     const index = todos.findIndex (i => i.id === id)
-    if (!(index + 1)) {
+    if ((index + 1)) {
         todos.splice(index, 1)
         this.saveToLS(todos)
     }
