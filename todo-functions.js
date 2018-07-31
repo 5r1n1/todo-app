@@ -61,7 +61,7 @@ const buildTodoListUI = (item) => {
     })
 
     const txt = document.createElement('a')
-    txt.setAttribute('href', `/edit-note.html#${item.id}`)
+    txt.setAttribute('href', `./edit-note.html#${item.id}`)
     txt.appendChild(chk)
     txt.insertAdjacentText('beforeend', ' ' + item.text)
     s.appendChild(txt)
