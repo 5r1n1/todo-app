@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit To-Do</title>
+        <link rel="stylesheet" href="styles/styles.css">
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                    <h1 class="header__title">Things to do</h1>
+                    <h2 class="header__subtitle">Edit Todo item</h2>            
+            </div>
+        </div>
+        <div class="container">
+            <form id="edit-todo-form" class="edit-todo">
+                <input type="text" id="todo-text" class="edit-todo-text" name="todoText" placeholder="Enter Todo text...">
+                <button type="submit" id="save-button" class="button">Save</button>            
+            </form>    
+        </div>
+        <script src="scripts/todo-functions.js"></script>
+        <script src="scripts/todo-edit.js"></script>
+    </body>
+</html>

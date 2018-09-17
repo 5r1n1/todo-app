@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <title>To-Do App</title>
+        <link rel="stylesheet" href="styles/styles.css">
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    </head>
     <body>
-        <h1>Things to do</h1>
-        <h2>List Todo items</h2>
-        <label>Search:
-            <input id="search-text" type="text" placeholder="Enter search text...">
-        </label>
-        <button id="clear-search">Clear Search</button>
-        <br><br>
-        <label>
-            <input type="checkbox" id='hide-completed'>
-            Hide Completed
-        </label>
-        <br><div id="filtered-todos"></div><br>
-        <h2>Add Todo items</h2>
-        <form id="add-todo-form">
-            <input type="text" id="todo-text" name="todoText" placeholder="Enter things to do...">
-            <button>Add Todo</button>
-        </form><br>
+        <div class="header">
+            <div class="container">
+                    <h1 class="header__title">Things to do</h1>
+                    <h2 class="header__subtitle">List Todo items</h2>            
+            </div>
+        </div>
+        <div class="actions">
+            <div class="actions__container">
+                <input id="search-text" type="text" class="input" placeholder="Filter To-Dos">
+                <!-- <button id="clear-search" class="button" >Clear Search</button> -->
+                <label class="checkbox">
+                    <input type="checkbox" id='hide-completed'> Hide Completed
+                </label>
+            </div>
+        </div>
+        <div class="container">
+            <div id="filtered-todos"></div><br>
+            <form id="add-todo-form">
+                <input type="text" id="todo-text" class="input" name="todoText" placeholder="Enter things to do...">
+                <button class="button">Add Todo</button>
+            </form>
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-        <script src="todo-functions.js"></script>
-        <script src="todo-app.js"></script>
+        <script src="scripts/todo-functions.js"></script>
+        <script src="scripts/todo-app.js"></script>
     </body>
 </html>
